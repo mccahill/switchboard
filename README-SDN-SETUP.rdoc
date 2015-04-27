@@ -1,4 +1,4 @@
-== Setup a RYU, mininet, and Openvswitch
+== Setup a RYU, mininet, and Open vSwitch
 
 To simulate an SDN network, I previously ran the SDNHub virtual appliance,
 (found here: http://sdnhub.org/tutorials/sdn-tutorial-vm/) and configured a 
@@ -6,7 +6,7 @@ simulated SDN network using mininet.
 
 However, after I managed to mess up the SDNHub appliance several times, 
 I decided to build a minimal VM to run the things I care about. Here is
-how to build an environment:
+how to build that environment:
 
 1.) update your Ubuntu 14.04 VM
 
@@ -184,22 +184,26 @@ https://osrg.github.io/ryu-book/en/html/rest_router.html
 
 10.) BUT WAIT -- There's More! 
 
-Suppose you want to simulate a scenario with a micture of un-tagged traffic and vlan-tagged
+Suppose you want to simulate a scenario with a mixture of un-tagged traffic and vlan-tagged
 addresses/routes. To test this scenario, there is a set of config and start scripts in the SDN
 subdirectory. Here are the parts to look at:
 
-start-mn-vlan-3sw-6hosts - a shell script that launches mininet and configures it
+a shell script that launches mininet and configures it:
+  start-mn-vlan-3sw-6hosts
 
-vlan-topo-3sw-6hosts.py - the topology file
+the topology file
+  vlan-topo-3sw-6hosts.py
 
-vlan-3sw-6hosts-config-ip - the configuration for mininet after the topology has been built
+the configuration for mininet after the topology has been built
+  vlan-3sw-6hosts-config-ip
 
 The idea here is to have one set of hosts and routes that are untagged and another set that
 are tagged as being on vlan 2.
 
 The un-tagged hosts and routes are h2, h4 and h6 (connected to sw1, sw2, and sw3 respectively).
 The hosts living on VLAN 2 are h1, h3, and h5 (connected to sw1, sw2, and sw3 respectively).
- Note that some fancy footwork is required to add a networ dev and address in mininet for the vlan;
+ 
+Note that some fancy footwork is required to add a networ dev and address in mininet for the vlan;
 that is what is going on here in the config-ip file:
 
   h1 ip link add link h1-eth0 name h1-eth0.2 type vlan id 2
