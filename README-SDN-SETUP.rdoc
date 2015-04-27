@@ -127,43 +127,43 @@ nothing is configured yet, but ryu is working
 
 5.) In mininet, set default routes for the hosts:
 
-mininet> h1 ip route add default via 172.16.96.120
-mininet> h2 ip route add default via 172.16.96.120
-mininet> h3 ip route add default via 172.16.8.75
-mininet> h4 ip route add default via 172.16.8.75
-mininet> h5 ip route add default via 172.16.8.15
-mininet> h6 ip route add default via 172.16.8.15
+  mininet> h1 ip route add default via 172.16.96.120
+  mininet> h2 ip route add default via 172.16.96.120
+  mininet> h3 ip route add default via 172.16.8.75
+  mininet> h4 ip route add default via 172.16.8.75
+  mininet> h5 ip route add default via 172.16.8.15
+  mininet> h6 ip route add default via 172.16.8.15
 
 
 
 6.) Now we can configure the SDN switches. First, add routes for the host networks. 
 This could be done from Switchboard, or you can do it by hand via curl commands. 
 
-curl -X POST -d '{"address":"172.16.96.120/25"}' http://localhost:8080/router/0000000000000001
-curl -X POST -d '{"address":"172.16.8.75/26"}' http://localhost:8080/router/0000000000000002
-curl -X POST -d '{"address":"172.16.8.15/26"}' http://localhost:8080/router/0000000000000003
+  curl -X POST -d '{"address":"172.16.96.120/25"}' http://localhost:8080/router/0000000000000001
+  curl -X POST -d '{"address":"172.16.8.75/26"}' http://localhost:8080/router/0000000000000002
+  curl -X POST -d '{"address":"172.16.8.15/26"}' http://localhost:8080/router/0000000000000003
  
 set up the routes for the networks that interconnect the switches:
 
-curl -X POST -d '{"address":"172.16.47.1/30"}' http://localhost:8080/router/0000000000000001
-curl -X POST -d '{"address":"172.16.47.2/30"}' http://localhost:8080/router/0000000000000002
-curl -X POST -d '{"address":"172.16.47.5/30"}' http://localhost:8080/router/0000000000000002
-curl -X POST -d '{"address":"172.16.47.6/30"}' http://localhost:8080/router/0000000000000003
+  curl -X POST -d '{"address":"172.16.47.1/30"}' http://localhost:8080/router/0000000000000001
+  curl -X POST -d '{"address":"172.16.47.2/30"}' http://localhost:8080/router/0000000000000002
+  curl -X POST -d '{"address":"172.16.47.5/30"}' http://localhost:8080/router/0000000000000002
+  curl -X POST -d '{"address":"172.16.47.6/30"}' http://localhost:8080/router/0000000000000003
 
 and add default routes between the switches
 
-curl -X POST -d '{"gateway": "172.16.47.2"}' http://localhost:8080/router/0000000000000001
-curl -X POST -d '{"gateway": "172.16.47.1"}' http://localhost:8080/router/0000000000000002
-curl -X POST -d '{"gateway": "172.16.47.5"}' http://localhost:8080/router/0000000000000003
+  curl -X POST -d '{"gateway": "172.16.47.2"}' http://localhost:8080/router/0000000000000001
+  curl -X POST -d '{"gateway": "172.16.47.1"}' http://localhost:8080/router/0000000000000002
+  curl -X POST -d '{"gateway": "172.16.47.5"}' http://localhost:8080/router/0000000000000003
 
 add a static route from s2 to s3
 
-curl -X POST -d '{"destination": "172.16.8.0/26", "gateway": "172.16.47.6"}' http://localhost:8080/router/0000000000000002
+  curl -X POST -d '{"destination": "172.16.8.0/26", "gateway": "172.16.47.6"}' http://localhost:8080/router/0000000000000002
 
 
 7.) In mininet, you should now be able to ping between hosts connected to different SDN switches
 
-mininet> h1 ping 172.16.8.66
+  mininet> h1 ping 172.16.8.66
 
 
 8.) To save on the tedium of copypasta mininet config commands for the hosts
@@ -189,7 +189,9 @@ addresses/routes. To test this scenario, there is a set of config and start scri
 subdirectory. Here are the parts to look at:
 
 start-mn-vlan-3sw-6hosts - a shell script that launches mininet and configures it
+
 vlan-topo-3sw-6hosts.py - the topology file
+
 vlan-3sw-6hosts-config-ip - the configuration for mininet after the topology has been built
 
 The idea here is to have one set of hosts and routes that are untagged and another set that
