@@ -1,0 +1,15 @@
+
+<div id='act_menu'>
+	<span>Activities 
+		<input class="settings_btn" id='menu_button' type="button"  />
+	</span>
+	<div id='popupmenu'>
+		<ul>
+			
+			<li <% if (params[:view_type].blank?  ) %>class="active"<% end %>><%=link_to 'Stream', activities_path %></li>
+			<li <% if (params[:view_type] == 'table'  ) %>class="active"<% end %>><%=link_to 'Table', activities_path(view_type: 'table')%></li>
+			<li><%=link_to 'CSV', activities_path(view_type: 'table', format: 'csv')%></li>
+		</ul>
+	</div>
+</div>
+

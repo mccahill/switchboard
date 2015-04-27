@@ -1,0 +1,4 @@
+#!/bin/sh
+sudo mn --clean
+sudo mn --custom ./vlan-topo-3sw-6hosts.py --topo mytopo --mac --controller remote --switch ovsk --pre ./vlan-3sw-6hosts-config-ip
+

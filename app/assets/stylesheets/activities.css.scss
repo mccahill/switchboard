@@ -1,0 +1,317 @@
+
+a.decorated {
+	color: #1c5c76;
+}
+a {
+padding: 2px 0;
+margin: 0;
+font-size: 100%;
+vertical-align: baseline;
+}
+div.day {
+    width: 100px;
+    margin-left: 423px;
+    color: black
+}
+
+div.day a {
+    display: block;
+    width: 98px;
+    height: 94px;
+    background: white;
+    font-weight: bold;
+    border: 7px solid #dcd9d3;
+    text-decoration: none;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    border-radius: 100px
+}
+
+div.day a>span {
+    display: table-cell;
+    width: 98px;
+    height: 97px;
+    vertical-align: middle;
+    text-align: center;
+    line-height: 16px;
+    font-size: 17px
+}
+
+div.day a>span>span {
+    text-decoration: underline
+}
+
+div.day a>span time {
+    display: block;
+    font-weight: normal;
+    font-size: 11px;
+    color: #bbb
+}
+div.project:not(.created):not(.bulk_access_granted) {
+    color: black;
+    font-weight: bold;
+    border-bottom: 7px solid #dcd9d3;
+    padding-top: 2px;
+    padding-bottom: 2px
+}
+div.project.right {
+    padding-left: 10px
+}
+
+div.project>a {
+    color: #1c5c76;
+    text-decoration: underline
+}
+
+div.project, article.event {
+    zoom: 1;
+    font-size: 15px;
+    width: 475px;
+    word-wrap: break-word
+}
+
+div.project:after, article.event:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden
+}
+
+div.project.left, article.event.left {
+    border-right: 7px solid #dcd9d3
+}
+
+div.project.left div.action, article.event.left div.action {
+    padding-right: 15px
+}
+
+div.project.left div.time, article.event.left div.time {
+    float: right;
+    text-align: right
+}
+
+div.project.right, article.event.right {
+    border-left: 7px solid #dcd9d3;
+    margin-left: 475px
+}
+
+div.project.right div.time, article.event.right div.time {
+    float: left
+}
+
+div.project.duplicate_person, article.event.duplicate_person {
+    margin-top: -5px
+}
+
+article.event .time_ago, article.event .in_project,
+article.event .bucket {
+    display: none
+}
+
+article.event div.excerpt {
+    display: block;
+    color: #333;
+    margin-top: 3px;
+    font-size: 14px;
+    line-height: 1.2em;
+    font-weight: normal
+}
+
+article.event div.excerpt p:last-child, article.event div.excerpt ul:last-child {
+    margin-bottom: 0
+}
+
+article.event div.excerpt_attachments {
+    margin-top: 7px;
+    margin-right: -40px
+}
+
+article.event div.excerpt_attachments div.image_grid_view {
+    clear: none
+}
+
+article.event div.excerpt_attachments div.cell {
+    padding: 0;
+    background-color: #f1eadd;
+    border-color: #f5efe6
+}
+
+article.event div.excerpt_attachments div.background span.meta {
+    color: #aa9c84;
+    display: none
+}
+
+article.event div.excerpt_attachments div.background figcaption {
+    font-size: 11px;
+    line-height: 13px;
+    padding: 0 5px 12px
+}
+
+article.event div.excerpt_attachments div.background figcaption b {
+    text-shadow: none
+}
+
+article.event div.excerpt_attachments div.background figcaption span.meta {
+    font-size: 11px;
+    line-height: 13px
+}
+
+article.event div.excerpt_attachments div.background span.hidden_from_client {
+    display: none
+}
+
+article.event div.excerpt_attachments img.thumbnail {
+    background-color: #fff;
+    margin-bottom: 5px;
+    margin-top: 8px;
+    border-color: #DCD9D3
+}
+
+article.event div.excerpt_attachments img.file_icon {
+    margin-top: 0
+}
+
+article.event div.excerpt_attachments figure>figcaption,
+article.event div.excerpt_attachments figure div.tags_and_comments {
+    display: none
+}
+
+article.event>div.time {
+    width: 60px;
+    padding: 12px 10px 0;
+    color: #aa9c84;
+    font-size: 13px
+}
+
+article.event>div.action {
+    padding: 12px;
+    color: black;
+    font-size: 13px;
+    line-height: 1.5em;
+    width: 360px;
+    margin-left: 10px;
+    word-wrap: break-word;
+    font-weight: bold
+}
+
+article.event>div.action>a {
+    font-weight: normal
+}
+
+article.event>div.action .project_summary {
+    display: none
+}
+
+article.event>div .service {
+    display: block;
+    font-size: 13px;
+    font-weight: normal;
+    color: #aa9c84
+}
+
+#popupmenu { 
+/*	width: 75px; 
+	height: 100px; 
+*/	background: #cedef8; 
+	border:1px solid #00258a;
+	color: #00258a;
+	display: none; 
+	margin-left:70px;
+}
+
+#popupmenu ul {
+	list-style-type: none;
+	padding: 0 0 0 10px;
+	margin-top:5px;
+	margin-right:8px;
+}
+
+#popupmenu li.secondary {
+    color: #666;
+}
+
+#popupmenu li a {
+    font-size: 16px;
+    color: #00258a;
+    outline: none;
+}
+
+#popupmenu li.subtle a { color: #666; margin-left: 10px;}
+#popupmenu li.subtle a:hover { color: #92B92D; }
+#popupmenu li a nav-active { 
+  text-decoration: none; 
+  color: white;
+  }
+#popupmenu li a:active { margin-top: 1px; }
+
+#popupmenu li a:hover{ 
+  text-decoration: none; 
+  color: #868F97;
+  }
+#popupmenu .active a{
+ 	color: white;
+}
+#popupmenu li a {
+    height: 20px;
+}
+
+.settings_btn{
+  background-image: image-url("settings.png");
+
+	background-repeat: no-repeat;
+	background-position: -21px 0;
+	border-color:transparent;
+	width: 20px;
+	height: 20px;
+	top: 10px;
+	margin: 0 0 0 10px;
+	z-index: 12;
+}
+
+
+.settings_btn:hover {
+	border-color:transparent;
+  background-image: image-url("settings.png");
+	background-position: 0 0;
+}
+
+.act_table{
+	margin: 10px;
+}
+
+
+.act_table th.headerSortUp { 
+    background-image: image-url("small_asc.gif"); 
+    background-color: #3399FF; 
+} 
+
+.act_table th.headerSortDown { 
+    background-image: image-url("small_desc.gif"); 
+    background-color: #3399FF; 
+}
+
+.act_table th.header { 
+    background-image: image-url("small.gif");     
+    cursor: pointer; 
+    font-weight: bold; 
+    background-repeat: no-repeat; 
+    background-position: center left; 
+    padding-left: 20px; 
+    border-right: 1px solid #dad9c7; 
+    margin-left: -1px; 
+}
+.act_table ul{
+	margin:0;
+
+}
+#act_menu {
+	position:absolute;
+}
+
+#act_menu span {
+	color: #00258a;
+	font-weight: normal;
+	font-size: 1.7em;
+	height:50px
+}

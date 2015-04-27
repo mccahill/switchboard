@@ -1,0 +1,33 @@
+<%= form_for(@switch_initial_config) do |f| %>
+  <% if @switch_initial_config.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@switch_initial_config.errors.count, "error") %> prohibited this switch_initial_config from being saved:</h2>
+
+      <ul>
+      <% @switch_initial_config.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :switch_id %>
+    <%= collection_select(:switch_initial_config, :switch_id, Switch.all, :id, :description) %>
+  </div>
+  <div class="field">
+    <%= f.label :ip %>
+    <%= f.text_field :ip %>
+  </div>
+  <div class="field">
+    <%= f.label :vlan %>
+    <%= f.text_field :vlan %>
+  </div>
+  <div class="field">
+    <%= f.label :switch_connection_type_id %>
+    <%= collection_select(:switch_initial_config, :switch_connection_type_id, SwitchConnectionType.all, :id, :name) %>
+  </div>
+  <div class="actions">
+    <%= f.submit :class=>'standard_button' %>
+  </div>
+<% end %>

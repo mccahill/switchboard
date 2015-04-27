@@ -1,0 +1,2 @@
+module MonitorGlueHelper
+end

@@ -1,0 +1,7 @@
+curl -i -X GET -u 'vincent:testing123' -H "Accept: application/json" http://localhost:3000/links
+
+curl --ignore -i -X GET -u 'vincent:testing123' -H "Accept: application/json" https://switchboard-web-test.oit.duke.edu/links
+
+curl -i -X GET -u 'vincent:testing123' -H "Accept: application/json" https://switchboard.oit.duke.edu/links
+
+curl -i -X GET -u 'vincent:testing123' -H "Accept: application/json" http://localhost:3000/links/1

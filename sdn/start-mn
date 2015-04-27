@@ -1,0 +1,3 @@
+#!/bin/sh
+sudo mn --clean
+sudo mn --custom ./topo-3sw-6hosts.py --topo mytopo --mac --controller remote --switch ovsk --pre ./config-ip

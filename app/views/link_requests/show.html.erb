@@ -1,0 +1,62 @@
+<p id="notice"><%= notice %></p>
+
+<fieldset class='show_requests'>
+	<legend>Link Requirements</legend>
+  
+	<% @link_request.approvals.each do |approval| %>
+	<div>
+		<label>Host:</label> <%= approval.ip.fqdn %>
+		<% if !approval.ip.vlan.nil?  %>
+		    <% if !approval.ip.vlan.vlan_name.blank?  %>
+			<br><label>VLAN:</label> <%= approval.ip.vlan.display %>
+			<% end %>
+		<% end %>
+	</div>
+	<% end %>
+		
+		<div>
+		<label>Type of Traffic</label>   <%= @link_request.traffic %>
+	</div>
+	<div>
+		<label>Estimated Duration Requested</label>   <%= @link_request.duration %> Months
+	</div>
+	<div>
+    <label>Comments</label>
+    <%= simple_format(@link_request.comment) %>
+  </div>
+	<div>
+		<div style='float:left'>
+    <label>Current State</label></div>
+    <div style='display:inline'>
+			
+			<% @link_request.approvals.each do |a| %>
+				<%= buildOwnerGroup(a)%>
+			<% end %>	
+		</div>
+	</div>
+	
+	<% if @link_request.status == :approved %>
+	<div>
+    <label>Start Date</label> <%= @link_request.start.strftime("%Y-%m-%d") %>
+	</div>
+	<div>
+    <label>Expected End Date</label> <%= @link_request.end.strftime("%Y-%m-%d") %>
+	</div>
+	
+	<% end %>
+
+</fieldset>
+	<div style='margin-top:20px;float:left;'>
+	
+<% if @link_request.can_be_approved_by(@user) %>
+
+<%= button_to "Approve Link", {action: :approve, id: @link_request.id}, :class=>'standard_button' %>
+	</div>
+	<div style='margin-top:20px;float:left;'>
+		<%= button_to "Deny Link Request", {action: :deny, id: @link_request.id}, :confirm => 'Are you sure you want to Deny this request? The request process will be terminated.', :class=>'standard_button' %>
+	</div>
+	<div style='margin-top:20px;float:left;'>
+
+<% end %>
+	<%= link_to "Back", link_requests_path%>
+	</div>

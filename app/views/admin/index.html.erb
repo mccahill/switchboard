@@ -1,0 +1,23 @@
+<h1>Switchboard Admin</h1>
+<hr>
+<h3>Links, IP addresses, and subnet management</h3>
+<list>
+	<li><%= link_to "Currently valid links", action: :links%></li>
+	<li><%= link_to "Subnet, IP, and VLAN managers", admin_subnets_path%></li>
+	<li><%= link_to "Group membership", controller: :owner_group%></li>
+</list>
+<hr>
+<h3>SDN management</h3>
+<list>
+	<li><%= link_to "Visualize dynamic network configs",  home_visualize_sdn_path, :target => '_blank'%></li>
+	<li><%= link_to "Fetch current SDN configuration from controller",  admin_get_sdn_config_path%></li>
+	<li><%= link_to "Restore SDN state (playback saved default + dynamic configs)",  admin_playback_to_sdn_path%></li>
+	<li><%= link_to "SDN status for monitoring",  monitor_glue_status_path%></li>
+</list>
+<h3>Default SDN controller and switch setup</h3>
+<list>
+	<li><%= link_to "Visualize default controller/switch configs",  admin_visualize_switch_setup_path, :target => '_blank'%></li>
+	<li><%= link_to "Manage switch collection",  switches_path, :target => '_blank'%></li>
+	<li><%= link_to "Default switch configs",  switch_initial_configs_path, :target => '_blank'%></li>
+	<li><%= link_to "Initialize SDN controller with default configs",  admin_initialize_sdn_controller_path%></li>
+</list>

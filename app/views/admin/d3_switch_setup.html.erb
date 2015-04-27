@@ -1,0 +1,238 @@
+
+<script src="/assets/d3.v3.js"></script>
+<style>
+
+path.link {
+  fill: none;
+  stroke: #666;
+  stroke-width: 1.5px;
+}
+
+circle {
+  fill: #00F;
+  stroke: #fff;
+  stroke-width: 1.5px;
+}
+
+text {
+  fill: #000;
+  font: 10px sans-serif;
+  pointer-events: none;
+}
+
+div.nodedetail {
+    position: absolute;    
+    text-align: left;    
+    /* width: 60px;    
+    height: 28px;     */   
+    padding: 4px;    
+    font: 12px sans-serif;    
+    background: #EBF0CC;    
+    border: 0px;                    
+    border-radius: 4px;
+}
+
+</style>
+
+<script>
+
+// Define 'div' for nodedetail
+var div = d3.select("body")
+    .append("div")  // declare the nodedetail div 
+    .attr("class", "nodedetail")
+    .style("opacity", 0);
+
+
+// get the data - hardwired during development, but go dynamic for production
+//d3.csv("http://localhost:3000/assets/graph-test-network.txt",function(error, links) {
+
+d3.csv("<%=request.base_url%>/admin/switch_setup.csv",function(error, links) {
+var nodes = {};
+
+// Compute the distinct nodes from the links.
+  links.forEach(function(link) {
+    link.source = nodes[link.source] || (nodes[link.source] = {name: link.source});
+    link.target = nodes[link.target] || (nodes[link.target] = {name: link.target});
+    link.group = link.value;
+    
+    // accumulate the notes about each link the node is involved in
+    if (typeof(link.source.notes) == 'undefined') {
+      link.source.notes = link.notes
+    } else {
+      link.source.notes = link.source.notes + '<br> ' + link.notes
+    }
+    if (typeof(link.target.notes) == 'undefined') {
+      link.target.notes = link.notes
+    } else {
+      link.target.notes = link.target.notes + '<br> ' + link.notes
+    }
+  });
+
+
+var width = 960,
+    height = 500;
+
+var force = d3.layout.force()
+    .nodes(d3.values(nodes))
+    .links(links)
+    .size([width, height])
+    .linkDistance(125)
+    .charge(-500)
+    .on("tick", tick)
+    .start();
+
+var drag = force.drag()
+    .on("dragstart", dragstart);
+
+var color = d3.scale.category10();
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width)
+    .attr("height", height);
+
+// build the arrow.
+svg.append("svg:defs").selectAll("marker")
+    .data(["end"])      // Different link/path types can be defined here
+  .enter().append("svg:marker")    // This section adds in the arrows
+    .attr("id", String)
+    .attr("viewBox", "0 -5 10 10")
+    .attr("refX", 15)
+    .attr("refY", -1.5)
+    .attr("markerWidth", 6)
+    .attr("markerHeight", 6)
+    .attr("orient", "auto")
+    //.style("fill", function(d) { return color(d.value); })
+    .style("fill", "#0736A4")
+  .append("svg:path")
+    .attr("d", "M0,-5L10,0L0,5");
+
+// add the links and the arrows
+var path = svg.append("svg:g").selectAll("path")
+    .data(force.links())
+    .enter().append("svg:path")  
+    .attr("class", function(d) { return "link " + d.value; })  
+    .style("stroke", function(d) { return color(d.value); })
+    .attr("marker-end", "url(#end)");
+
+
+// define the nodes
+var node = svg.selectAll(".node")
+    .data(force.nodes())
+  .enter().append("g")
+    .attr("class", "node")
+    .on("click", click)
+    .on("dblclick", dblclick)
+    .on("mouseover", mouseover)
+    .on("mouseout", mouseout)
+    .call(drag);
+
+// add the nodes
+node.append("circle")
+    .style("fill", "#0736A4")
+    .attr("r", 5);
+
+// add the text 
+node.append("text")
+    .attr("x", 12)
+    .attr("dy", ".35em")
+    .text(function(d) { return d.name; });
+
+// add the curvy lines
+function tick() {
+    path.attr("d", function(d) {
+        var dx = d.target.x - d.source.x,
+            dy = d.target.y - d.source.y,
+            dr = Math.sqrt(dx * dx + dy * dy);
+        return "M" + 
+            d.source.x + "," + 
+            d.source.y + "A" + 
+            dr + "," + dr + " 0 0,1 " + 
+            d.target.x + "," + 
+            d.target.y;
+    });
+    node
+        .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
+}
+
+// action to take on mouseover
+function mouseover(d) {
+    d3.select(this).select("text").transition()
+    div.transition()
+        .duration(500)    
+        .style("opacity", 0);
+    div.transition()
+        .duration(200)    
+        .style("opacity", .9);    
+    div .html( "<center><b>" + d.name + "</b></center><hr>"+ d.notes + "<br>&nbsp<br>")     
+        .style("left", (d3.event.pageX) + "px")             
+        .style("top", (d3.event.pageY) + 25 + "px");
+}
+
+// action to take on mouseout
+function mouseout(d) {		
+    div.transition()		
+        .duration(500)		
+        .style("opacity", 0);	
+}
+
+// action to take on mouse click
+function click(d) {
+    d3.select(this).select("text").transition()
+        .duration(750)
+        .attr("x", 22)
+        .style("fill", "#0736A4")
+        .style("stroke", "#0736A4")
+        .style("stroke-width", ".5px")
+        .style("font", "20px sans-serif");
+    d3.select(this).select("circle").transition()
+        .duration(750)
+        .attr("r", 16)
+        .style("fill", "#0736A4");
+}
+
+// action to take on mouse double click
+function dblclick(d) {
+    d3.select(this).select("circle").transition()
+        .duration(750)
+        .attr("r", 6)
+        .style("fill", "#0736A4");
+    d3.select(this).select("text").transition()
+        .duration(750)
+        .attr("x", 12)
+        .style("stroke", "none")
+        .style("fill", "black")
+        .style("stroke", "none")
+        .style("font", "10px sans-serif");
+    d3.select(this).classed("fixed", d.fixed = false); //subjected the node to force layout again
+}
+
+// stop subjecting the node to force layout
+function dragstart(d) {
+  d3.select(this).classed("fixed", d.fixed = true);
+}
+
+//Legend
+var legend = svg.selectAll(".legend")
+    .data(color.domain())
+    .enter().append("g")
+    .attr("class", "legend")
+    .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+
+legend.append("rect")
+    .attr("x", width - 18)
+    .attr("width", 18)
+    .attr("height", 18)
+    .style("fill", color);
+
+legend.append("text")
+    .attr("x", width - 24)
+    .attr("y", 9)
+    .attr("dy", ".35em")
+    .style("text-anchor", "end")
+    .text(function(d) { return d });
+
+
+
+});
+
+</script>

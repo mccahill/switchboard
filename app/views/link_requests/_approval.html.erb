@@ -1,0 +1,12 @@
+<td><% unless approval.blank?%>
+    <%= approval.ip.fqdn %><br/>
+    <% if !approval.ip.vlan.blank?%>
+      <% if !approval.ip.vlan.vlan_name.blank?%> 
+        VLAN: <%= approval.ip.vlan.display %><br/>
+      <% end %>
+    <% end %>
+    <%= approval.status_display %>
+  <% else %>
+		Missing?
+  <% end %>
+</td>

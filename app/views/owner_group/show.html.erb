@@ -1,0 +1,58 @@
+<p id="notice"><%= notice %></p>
+
+<%= link_to 'Back', controller: :owner_group %>
+<fieldset class='show_requests'>
+	<legend><%= @group.name %></legend>
+
+<h4>Manages</h4>
+
+<table border='0' class='tablesorter' cellspacing='1' cellpadding='0' width='100%' >
+  <thead>
+  <tr>
+      <th >Type</th>
+      <th >Object</th>
+    </tr>
+  </thead>
+
+  <tbody id='admin_list_tbody_id'>
+		
+    <% @group.owner_objects.each do |oo| %>
+      <tr style="background-color:<%= cycle("#E6F2FF","white") %>">
+				<td ><%= oo.ownable_type %> </td>
+				<td><%= oo.ownable.display %> </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h4>Members</h4>
+
+<table border='0' id='user_table' class='tablesorter' cellspacing='1' cellpadding='0' width='100%' >
+  <thead>
+  <tr>
+      <th >Name</th>
+      <th >Net ID</th>
+      <th >Action</th>
+    </tr>
+  </thead>
+
+  <tbody id='admin_list_tbody_id'>
+		
+    <% @group.users.each do |user| %>
+      <tr id='row_<%=user.netid%>' style="background-color:<%= cycle("#E6F2FF","white") %>">
+				<td><%= user.displayName %> </td>
+				<td><%= user.netid %> </td>
+				<td><a href='#' id='user_delete_<%=user.netid%>' onclick='return deleteUser("<%=user.netid%>")'>Remove</a></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+		<p>Add a member: 
+			<input id="user_netid" name="user_netid" type="text"><span id="empty-user-message"></span>
+			<a href='#' id='user_netid_add' style='display:none;'>Add</a>
+			<span id='group_id' style='display:none;'><%=@group.id%></span>
+		</p>
+
+</fieldset>

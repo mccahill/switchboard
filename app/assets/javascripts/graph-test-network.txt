@@ -1,0 +1,12 @@
+source,target,value,notes
+Switch 1,Switch 2,0,default gateway 10.134.96.0/25
+Switch 2,Switch 1,0,10.134.96.3/25
+Switch 2,Switch 3,0,2->3
+Switch 3,Switch 2,0,3->2
+Switch 1,h1,1,a host
+Switch 1,h2,1,another host
+Switch 2,h3,2,yet another host
+Switch 2,h4,2,still more
+Switch 3,h5,3,even more
+Switch 3,h6,3,last host
+Switch 4,Switch 4,4,un-connected

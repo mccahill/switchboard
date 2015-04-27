@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  ip_id: 1
+  status: MyString
+  approved_by: 1
+  approved_at: 2014-04-16
+
+two:
+  ip_id: 1
+  status: MyString
+  approved_by: 1
+  approved_at: 2014-04-16

@@ -1,0 +1,9 @@
+<div>
+<%= f.fields_for :ip do |builder| %>
+    <%= builder.label "hostname" %>
+    <%= builder.text_field :fqdn, size: 60 %><br>
+    <%= builder.label 'VLAN: ' %>
+    <%= builder.select(:vlan_id, Vlan.all.collect {|v| [ v.display, v.id ] }, {select: 1}) %>
+<% end %>
+    
+</div>

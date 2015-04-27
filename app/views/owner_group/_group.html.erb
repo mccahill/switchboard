@@ -1,0 +1,8 @@
+
+	<tr style="background-color:<%= cycle("#E6F2FF","white") %>">
+		<td><%= link_to(group.name,group) %></td>
+		
+    <td><%= group.created_at.strftime("%Y-%m-%d %H:%M") unless group.created_at.blank?%></td>
+    <td><%= group.users.collect{|u|u.displayName}.join(', ')%> </td>
+    <td><%= group.owner_objects.collect{|oc| oc.display}.join(', ')%> </td>
+  </tr>

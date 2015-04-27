@@ -1,0 +1,14 @@
+default: &default
+  adapter: mysql2
+  pool: 5
+  encoding: utf8
+  username: switchboard
+  socket: /tmp/mysql.sock
+
+development:
+  <<: *default
+  database: sb_development
+  username: root
+  password: 
+  socket: /tmp/mysql.sock
+

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Switchboard</title>
+	<%= favicon_link_tag 'favicon.ico' %>
+  <%= stylesheet_link_tag "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<% if flash[:notice] %>
+  <div class="notice"><p><%= flash[:notice] %></p></div>
+<% end %>
+<% if flash[:error] %>
+  <div class="error"><p><%= flash[:error] %></p></div>
+<% end %>
+
+<%= yield %>
+
+</div><!-- #page -->
+
+</body>
+</html>

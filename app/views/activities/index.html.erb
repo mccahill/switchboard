@@ -1,0 +1,29 @@
+<%= render 'menu_options'%>
+<% 
+even = true
+@actHash.each_pair do |actDate, acts| 
+	even = !even
+%>
+
+<div class='day'>
+<a href="#" class="decorated" data-default-stack="true">
+<span><span><%=actDate%></span></span>
+</a>
+</div>
+
+<div class="project chiral <%=even ? 'left':'right'%>" style="display: block;">
+</div>
+
+<% acts.each do |act| %>
+
+<article class="event chiral <%=even ? 'left':'right'%>" data-side="<%=even ? 'left':'right'%>">
+  <div class="time">
+    <span class="time_only"><time><%=act[:acttime]%></time></span>
+  </div>
+  <div class="action">
+    <span class="creator"> <%= act[:url].html_safe%></span>
+  </div>
+</article>
+<% end %>
+
+<% end %>

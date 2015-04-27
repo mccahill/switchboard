@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+  <!--[if IEMobile 7]><html class="no-js ie iem7" lang="en" dir="ltr"><![endif]-->
+  <!--[if lte IE 6]><html class="no-js ie lt-ie9 lt-ie8 lt-ie7" lang="en" dir="ltr"><![endif]-->
+  <!--[if (IE 7)&(!IEMobile)]><html class="no-js ie lt-ie9 lt-ie8" lang="en" dir="ltr"><![endif]-->
+  <!--[if IE 8]><html class="no-js ie lt-ie9" lang="en" dir="ltr"><![endif]-->
+  <!--[if (gte IE 9)|(gt IEMobile 7)]><html class="no-js ie" lang="en" dir="ltr" prefix="content: http://purl.org/rss/1.0/modules/content/ dc: http://purl.org/dc/terms/ foaf: http://xmlns.com/foaf/0.1/ og: http://ogp.me/ns# rdfs: http://www.w3.org/2000/01/rdf-schema# sioc: http://rdfs.org/sioc/ns# sioct: http://rdfs.org/sioc/types# skos: http://www.w3.org/2004/02/skos/core# xsd: http://www.w3.org/2001/XMLSchema#"><![endif]-->
+  <!--[if !IE]><!--><html class="no-js" lang="en" dir="ltr" prefix="content: http://purl.org/rss/1.0/modules/content/ dc: http://purl.org/dc/terms/ foaf: http://xmlns.com/foaf/0.1/ og: http://ogp.me/ns# rdfs: http://www.w3.org/2000/01/rdf-schema# sioc: http://rdfs.org/sioc/ns# sioct: http://rdfs.org/sioc/types# skos: http://www.w3.org/2004/02/skos/core# xsd: http://www.w3.org/2001/XMLSchema#"><!--<![endif]-->
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Switchboard</title>
+	<%= favicon_link_tag 'favicon.ico' %>
+  <%= stylesheet_link_tag "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+
+<body class="home page page-id-4 page-template-default single-author">
+<div id="page" class="hfeed">
+	<header id="branding" role="banner">
+		<div id="logo">
+			 <p><a href="http://www.duke.edu" tabindex="1" accesskey="1"><%= image_tag(asset_path("struct/logo.png"), width:"141", height:"64", alt:"Duke Univ") %></a></p>
+			 <h1><a href="/" rel="home" tabindex="2" accesskey="2">Switchboard</a></h1>
+			<ul id="mmenu">
+				<li <% if (params[:controller] == "home"  ) %>class="active"<% end %>>
+					<a href='/'>Home	</a>
+				</li>
+				<li <% if (params[:controller] == "request"  ) %>class="active"<% end %>>
+					<%= link_to( "Make a Request", new_link_request_path) %>
+				</li>
+				<li <% if (params[:controller] == "activities"  ) %>class="active"<% end %>>
+					<a href='/activities'>Request History	</a>
+				</li>
+				<li <% if (params[:controller] == "net_config_transactions"  ) %>class="active"<% end %>>
+					<a href='/net_config_transactions'>SDN Logs	</a>
+				</li>
+				<% if @user.isAdmin? %>
+				<li <% if (params[:controller] == "user" or params[:controller]=='admin') %>class="active"<% end %> >
+					<a href='/admin'>Admin</a>
+				</li>
+				<% end %>
+				
+				<li class='logout'>
+					<a href='/home/logout'>Logout</a>
+				</li>
+			</ul>
+	</div>
+	</header>
+	<% if flash[:notice] %>
+	<div class="notice"><p><%= flash[:notice] %></p></div>
+	    <% end %>
+	    <% if flash[:error] %>
+	      <div class="error"><p><%= flash[:error] %></p></div>
+	    <% end %>
+	<div id="main" class="clearfix">
+		<div id="mask"></div>
+			<div id="primary" class="full-width">
+				<div id="content" role="main">
+					<div class="front-page">
+						<div class="clearfix">
+<%= yield %>
+            </div><!--! end of .clearfix -->
+					</div><!--! end of .front-page -->
+				</div><!-- #content -->
+			</div><!-- #primary -->
+		</div><!-- #main -->
+	<div id="subFooter">
+	  <ul class="links" id="socialLinks">
+	    <li><%= link_to image_tag('futurity.gif'),"http://futurity.org" %></li>
+	    <li><%= link_to image_tag('youtube.gif'),"http://www.youtube.com/duke" %></li>
+	    <li><%= link_to image_tag('twitter.gif'),"http://twitter.com/DukeNews" %></li>
+	    <li><%= link_to image_tag('facebook.gif'),"http://www.facebook.com/DukeUniv" %></li>
+	    <li><%= link_to image_tag('apple.gif'),"http://itunes.duke.edu/" %></li>
+	    <li><%= link_to image_tag('rss.gif'),"http://news.duke.edu/" %></li>
+	  </ul>
+	<ul class="links" id="subFootLinks"><li class="menu-334 first"><a href="http://www.access.duke.edu/" title="">Accessibility</a></li>
+	  <li class="menu-115"><a href="http://duke.edu/styleguide.html" title="">Style Guide</a></li>
+	  <li class="menu-293"><a href="http://duke.edu/about_this_site.html" title="">About Duke.edu</a></li>
+	  <li class="menu-116 last"><a href="http://oit.duke.edu/about/contact/index.php" title="">Contact Us</a></li>
+	</ul>
+	    <a href="http://www.duke.edu" id="subFootLogo">Duke University</a>
+	    <p>&copy; 2012-2013 Duke University, Durham, NC 27708 | (919) 684-8111</p>
+	</div>
+</div><!-- #page -->
+
+</body>
+</html>

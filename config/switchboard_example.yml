@@ -1,0 +1,31 @@
+# Don't really need this yet
+defaults: &DEFAULTS
+  SDN_CONTROLLER_URL: http://colab-sbx-227.oit.duke.edu:8080
+  # username and password used to validate external REST calls to restore the controller's state
+  RESTORE_SDN_STATE_ID: PUT_REAL_USER_HERE
+  RESTORE_SDN_STATE_PW: PUT_REAL_PASSWORD_HERE
+
+
+development:
+  <<: *DEFAULTS
+  # SDN-specific settings
+  SDN_CONTROLLER_URL: http://colab-sbx-227.oit.duke.edu:8080
+  # username and password used to validate external REST calls to restore the controller's state
+  RESTORE_SDN_STATE_ID: PUT_REAL_USER_HERE
+  RESTORE_SDN_STATE_PW: PUT_REAL_PASSWORD_HERE
+
+test:
+  <<: *DEFAULTS
+  # SDN-specific settings
+  SDN_CONTROLLER_URL: http://colab-sbx-227.oit.duke.edu:8080
+  # username and password used to validate external REST calls to restore the controller's state
+  RESTORE_SDN_STATE_ID: PUT_REAL_USER_HERE
+  RESTORE_SDN_STATE_PW: PUT_REAL_PASSWORD_HERE
+
+production:
+  <<: *DEFAULTS
+  # SDN-specific settings
+  SDN_CONTROLLER_URL: http://colab-sbx-227.oit.duke.edu:8080
+  # username and password used to validate external REST calls to restore the controller's state
+  RESTORE_SDN_STATE_ID: PUT_REAL_USER_HERE
+  RESTORE_SDN_STATE_PW: PUT_REAL_PASSWORD_HERE

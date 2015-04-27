@@ -1,0 +1,451 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ *= require jquery.ui.tooltip
+ *= require jquery.ui.button
+ *= require jquery.ui.selectable
+ *= require jquery.ui.autocomplete
+ */
+
+#content {
+padding: 25px 0 30px 0;
+clear: both;
+height: 1%;
+}
+#main #content {
+float: left;
+width: 940px;
+}
+
+
+/* menu */
+
+#mmenu {
+    float: right;
+    padding-left: 25px;
+    padding-right: 25px;
+    text-align: center;
+    height: 40px;
+}
+
+#mmenu li {
+    display: inline;
+    margin-left: 19px;
+}
+
+#mmenu li.secondary {
+    margin-right: 5px;
+    color: #666;
+}
+
+#mmenu li a {
+    font-size: 16px;
+    color: #cfcfcf;
+    outline: none;
+}
+
+#mmenu li.subtle a { color: #666; margin-left: 10px;}
+#mmenu li.subtle a:hover { color: #92B92D; }
+#mmenu li a nav-active { 
+  text-decoration: none; 
+  color: #FBDE82;
+  }
+#mmenu li a:active { margin-top: 1px; }
+
+#mmenu li {
+    float: left;
+}
+#mmenu li a:hover{ 
+  text-decoration: none; 
+  color: #868F97;
+  }
+#mmenu .active a{
+ 	color: #FBDE82;
+}
+#mmenu li a {
+    height: 20px;
+    float: left;
+}
+
+#subFooter {
+	clear: both;
+		text-align: left;
+  position: relative;
+  margin: 0 auto;
+  font-size: 10px; /* 10px */
+  line-height: 18px;
+  font-family: Helvetica,Arial,sans-serif;
+  color: #666;
+  padding: 20px 0 20px 115px;
+
+	border-top: 1px solid #b5b5b5;
+}
+#subFooter p, #subFooter li, #subFooter a{
+  font-size: 10px; /* 10px */
+}
+#subFootLinks,#socialLinks {
+  margin: 0;
+  list-style-type: none;
+  float: right;
+  text-align: right;
+	padding:0;
+}
+#socialLinks {
+	margin-left: 20px;
+}
+#socialLinks li {
+	padding: 0 0 0 .25em;
+}
+#subFootLinks li, #subFootLinks ul,
+#socialLinks li, #socialLinks ul {
+  display: inline;
+  background: none;
+}
+#subFootLinks li {
+  padding: 0 10px 0 10px;
+  background-image: none;
+  border-left: 1px solid #dadada;
+}
+#subFootLinks li.noBorder {
+  border-left: 0;
+  padding-left: 0;
+}
+#subFootLinks li.last {
+  padding-right: 0;
+}
+#subFootLinks li.first {
+  border-left:0;
+}
+#subFootLinks li ul li {
+  padding: 0;
+  border: 0px;
+}
+#subFootLogo {
+  display: block;
+  width: 100px;
+  height: 38px;
+  background: image-url("struct/logo-subFooter.png") no-repeat 0 0;
+  text-indent: -9999px;
+  position: absolute;
+  left: 0;
+  top: 10px;
+}
+#subFooter p {
+  margin: 0 0 0.75em;
+}
+
+.standard_button{
+  font-family: 'Droid Sans', sans-serif;
+  font-size: 12px;
+  padding: 10px 20px;
+  border: 0px none;
+  border-radius: 4px;
+	background-color: #cedef8;
+	color: #053482;
+	font-weight: normal;
+}
+
+table.tablesorter {
+	font-family:arial;
+/*	background-color: #CDCDCD;
+*/	margin:10px 0pt 15px;
+	font-size: 8pt;
+	width: 100%;
+	text-align: left;
+}
+table.tablesorter th.action{
+	  width: 8%;
+}
+table.tablesorter th.mem_mb{
+	  width: 7%;
+}
+table.tablesorter th.date_started{
+	  width: 12%;
+}
+table.tablesorter th.self_admin{
+	  width: 7%;
+}
+table.tablesorter th.cpu{
+	  width: 5%;
+}
+table.tablesorter th.disk_gb{
+	  width: 7%;
+}
+table.tablesorter thead tr th, table.tablesorter tfoot tr th {
+	background-color: #e6EEEE;
+	border: 1px solid #FFF;
+	font-size: 8pt;
+	padding: 4px;
+}
+table.tablesorter thead tr .header {
+	background-image: image-url("bg.gif");
+	background-repeat: no-repeat;
+	background-position: center right;
+	cursor: pointer;
+}
+table.tablesorter tbody td {
+	color: #3D3D3D;
+	padding: 4px;
+	vertical-align: top;
+	min-width: 9em;
+}
+
+table.tablesorter tbody .error_tr td{
+	background-color:#DC5E5E;
+}
+table.tablesorter tbody .error_tr td {
+	color:#E6E7E8;
+}
+table.tablesorter tbody .error_tr:hover {
+    background-color:#A5434B;
+}
+
+table.tablesorter tbody .pending_tr{
+	background-color:#E4E070;
+}
+table.tablesorter tbody .pending_tr td {
+	color:#414042;
+}
+table.tablesorter tbody .pending_tr:hover {
+    background-color:#C6BA52;
+}
+
+table.tablesorter tbody .draft_tr{
+	background-color:#939598;
+}
+table.tablesorter tbody .draft_tr td {
+	color:#E6E7E8;
+}
+table.tablesorter tbody .draft_tr:hover {
+    background-color:#737476;
+}
+
+table.tablesorter tbody .complete_tr{
+	background-color:white;
+}
+table.tablesorter tbody .complete_tr td {
+	color:#414042;
+}
+table.tablesorter tbody .complete_tr:hover {
+    background-color:#D6D6D6;
+}
+
+table.tablesorter tbody .running_tr{
+	background-color:#9ED29D;
+}
+table.tablesorter tbody .running_tr td {
+	color:#414042;
+}
+table.tablesorter tbody .running_tr:hover {
+    background-color:#709E6F;
+}
+
+table.tablesorter tbody .bogus_tr td{
+	background-color:#F1B180;
+}
+table.tablesorter tbody .bogus_tr td {
+	color:#414042;
+}
+table.tablesorter tbody .bogus_tr:hover {
+    background-color:#CE8B4D;
+}
+table.tablesorter thead tr .headerSortUp {
+	background-image: image-url("asc.gif");
+}
+table.tablesorter thead tr .headerSortDown {
+	background-image: image-url("desc.gif");
+}
+table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSortUp {
+background-color: #8dbdd8;
+}
+table.tablesorter thead tr .no_sort_header{
+	background-image: none;
+}
+
+.field_with_errors {
+	display: inline;
+}
+.field_with_errors input, .field_with_errors select, .field_with_errors textarea  {
+  background-color: #f47a20;
+	color: white;
+}
+
+.actions{
+	padding-top:20px;
+}
+
+.show_requests label{
+	font-weight: bold;
+}
+
+.notice { background-color: #F6EAB8; border: 1px solid #631323; color: #000; }
+.error { background-color: #CC3300; border: 1px solid #900; color: #FFF; }
+.notice, .error { width: 85%; margin: 20px auto 10px auto;  }
+.notice p, .error p { margin-left: 10px; padding: 0; font-size: 1.50em; }
+.notice a, .error a { text-decoration: none; padding: 0 3px; }
+.notice a { border: 1px solid #26722D; color: #26722D; }
+.error a { border: 1px solid #900; color: #900; }
+.notice a:hover, .error a:hover { color: #333; border: 1px solid #333; }
+
+
+
+table.tablenettransactions {
+	font-family:arial;
+/*	background-color: #CDCDCD;
+*/	margin: 10px 0pt 15px;
+	font-size: 8pt;
+	width: 100%;
+	text-align: left;
+	table-layout:fixed;
+}
+table.tablenettransactions th.who{
+	  width: 5%;
+}
+table.tablenettransactions th.target{
+	  width: 15%;
+}
+table.tablenettransactions th.description{
+	  width: 14%;
+}
+table.tablenettransactions th.status{
+	  width: 8%;
+}
+table.tablenettransactions th.command{
+	  width: 15%;
+}
+table.tablenettransactions th.response{
+	  width: 31%;
+}
+table.tablenettransactions th.created_at{
+	  width: 7%;
+}
+table.tablenettransactions th.id{
+	  width: 5%;
+}
+table.tablenettransactions thead tr th, table.tablenettransactions tfoot tr th {
+	background-color: #e6EEEE;
+	border: 1px solid #FFF;
+	font-size: 8pt;
+	padding: 4px;
+}
+table.tablenettransactions thead tr .header {
+	background-image: image-url("bg.gif");
+	background-repeat: no-repeat;
+	background-position: center right;
+	cursor: pointer;
+}
+table.tablenettransactions tbody td {
+	color: #3D3D3D;
+	padding: 4px;
+	vertical-align: top;
+	min-width: 9em;
+}
+
+table.tablenettransactions tbody .error_tr td{
+	background-color:#DC5E5E;
+}
+table.tablenettransactions tbody .error_tr td {
+	color:#E6E7E8;
+}
+table.tablenettransactions tbody .error_tr:hover {
+    background-color:#A5434B;
+}
+
+table.tablenettransactions tbody .pending_tr{
+	background-color:#E4E070;
+}
+table.tablenettransactions tbody .pending_tr td {
+	color:#414042;
+}
+table.tablenettransactions tbody .pending_tr:hover {
+    background-color:#C6BA52;
+}
+
+table.tablenettransactions tbody .draft_tr{
+	background-color:#939598;
+}
+table.tablenettransactions tbody .draft_tr td {
+	color:#E6E7E8;
+}
+table.tablenettransactions tbody .draft_tr:hover {
+    background-color:#737476;
+}
+
+table.tablenettransactions tbody .complete_tr{
+	background-color:white;
+}
+table.tablenettransactions tbody .complete_tr td {
+	color:#414042;
+}
+table.tablenettransactions tbody .complete_tr:hover {
+    background-color:#D6D6D6;
+}
+
+table.tablenettransactions tbody .running_tr{
+	background-color:#9ED29D;
+}
+table.tablenettransactions tbody .running_tr td {
+	color:#414042;
+}
+table.tablenettransactions tbody .running_tr:hover {
+    background-color:#709E6F;
+}
+
+table.tablenettransactions tbody .bogus_tr td{
+	background-color:#F1B180;
+}
+table.tablenettransactions tbody .bogus_tr td {
+	color:#414042;
+}
+table.tablenettransactions tbody .bogus_tr:hover {
+    background-color:#CE8B4D;
+}
+table.tablenettransactions thead tr .headerSortUp {
+	background-image: image-url("asc.gif");
+}
+table.tablenettransactions thead tr .headerSortDown {
+	background-image: image-url("desc.gif");
+}
+table.tablenettransactions thead tr .headerSortDown, table.tablenettransactions thead tr .headerSortUp {
+background-color: #8dbdd8;
+}
+table.tablenettransactions thead tr .no_sort_header{
+	background-image: none;
+}
+
+.field_with_errors {
+	display: inline;
+}
+.field_with_errors input, .field_with_errors select, .field_with_errors textarea  {
+  background-color: #f47a20;
+	color: white;
+}
+
+.actions{
+	padding-top:20px;
+}
+
+.show_requests label{
+	font-weight: bold;
+}
+
+.notice { background-color: #F6EAB8; border: 1px solid #631323; color: #000; }
+.error { background-color: #CC3300; border: 1px solid #900; color: #FFF; }
+.notice, .error { width: 85%; margin: 20px auto 10px auto;  }
+.notice p, .error p { margin-left: 10px; padding: 0; font-size: 1.50em; }
+.notice a, .error a { text-decoration: none; padding: 0 3px; }
+.notice a { border: 1px solid #26722D; color: #26722D; }
+.error a { border: 1px solid #900; color: #900; }
+.notice a:hover, .error a:hover { color: #333; border: 1px solid #333; }
+

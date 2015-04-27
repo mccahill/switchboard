@@ -1,0 +1,32 @@
+<h1>SDN switches reset to initial configuration</h1>
+
+<h4>Results:</h4>
+<p></p>
+<p>before:</p>
+   <%= @starting_status.each do | item | %> 
+      <%= item %><br>
+   <% end %>
+<p></p>
+<hr>
+<p>routes to the host network side of each switch:</p>
+   <%= @step_one_status.each do | item | %> 
+      <%= item %><br>
+   <% end %>
+<p></p>
+<hr>
+<p>routes for the networks interconnecting the switches:</p>
+   <%= @step_two_status.each do | item | %> 
+      <%= item %><br>
+   <% end %>
+<p></p>
+<hr>
+<p>default routes for the switches to talk to each other:</p>
+  <%= @ending_status.each do | item | %> 
+     <%= item %><br>
+  <% end %>
+
+<br>
+<p> <%= link_to 'Back', controller: :admin %></p>
+
+<p class="notice" id='notice' style='display:none; padding:10px'><%= notice %></p>
+

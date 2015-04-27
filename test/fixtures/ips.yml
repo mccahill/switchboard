@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  addr: MyString
+  subnet_id: 1
+  fqdn: MyString
+
+two:
+  addr: MyString
+  subnet_id: 1
+  fqdn: MyString

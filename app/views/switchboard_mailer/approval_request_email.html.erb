@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Attention,</h1>
+    <p>
+			A request has been made by <%=@user.short_display%> to create this SDN connection:
+				<%= @desc %> 
+			
+			As a manager for one or both of these nodes you or another manager need to approve this.
+    </p>
+    <p>
+      Please go to this link <%= @url %> to approve this request.
+    </p>
+    <p>Duke Switchboard Application</p>
+  </body>
+</html>

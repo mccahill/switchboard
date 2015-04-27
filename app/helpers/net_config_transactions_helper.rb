@@ -1,0 +1,2 @@
+module NetConfigTransactionsHelper
+end

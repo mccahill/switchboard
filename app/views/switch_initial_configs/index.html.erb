@@ -1,0 +1,33 @@
+<h1>Switch configurations</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>ip</th>
+      <th>vlan</th>
+      <th>network type</th>
+      <th>switch</th>
+      <th colspan="4"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @switch_initial_configs.each do |switch_initial_config| %>
+      <tr style="background-color:<%= cycle("#E6F2FF","white") %>">
+        <td style='padding:5px 10px 5px 5px'><%= switch_initial_config.ip %></td>
+        <td style='padding:5px 10px 5px 5px'><%= switch_initial_config.vlan %></td>
+        <td style='padding:5px 10px 5px 5px'><%= switch_initial_config.network_type %></td>
+        <td style='padding:5px 10px 5px 5px'><%= switch_initial_config.switch_description %></td>
+        <td style='padding:5px 10px 5px 5px'><%= switch_initial_config.switch_name %></td>
+        <td style='padding:5px 10px 5px 5px'><%= link_to 'Show', switch_initial_config %></td>
+        <td style='padding:5px 10px 5px 5px'><%= link_to 'Edit', edit_switch_initial_config_path(switch_initial_config) %></td>
+        <td style='padding:5px 10px 5px 5px'><%= link_to 'Destroy', switch_initial_config, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Add Configuration', new_switch_initial_config_path %> | <%= link_to 'Edit Switches', switches_path %> |
+<%= link_to 'Back', admin_path %> 

@@ -1,0 +1,32 @@
+
+<%
+		bcolor = 'draft_tr'
+		bcolor = 'pending_tr' if  :pending == req.status
+		bcolor = 'bogus_tr' if req.status == :denied 
+		bcolor = 'complete_tr' if req.status == :approved
+		bcolor = 'error_tr' if req.status == :error or req.status == :revoked
+
+%>
+  <tr <%="class=#{bcolor}" unless bcolor.blank? %> >
+		
+		<%= render( :partial => "approval", collection: req.approvals, as: :approval) %>
+		<td><%= req.user.short_display %></td>
+		
+    <td><%= req.created_at.strftime("%Y-%m-%d %H:%M") unless req.created_at.blank?%></td>
+    <td><div id='status_div_<%=req.id%>' class="status_div" data-vmreqid="<%=req.id%>"><%= req.status%>
+			 </div>
+		</td>
+    <td>
+			<% if for_approve %>
+      	<%=link_to("Approve",req)%>
+			<% else %>
+     	 <%=link_to("View",req)%>
+	      
+				<% if req.status == :approved%>
+	      |	<%= link_to 'Revoke', req, method: :delete, data: { confirm: 'Are you sure? This will make this link invalid and it will have to be re-requested to activate again.' } %>
+				<% elsif req.status != :revoked and req.owned_by(@user)%>
+	      |	<%= link_to 'Delete', req, method: :delete, data: { confirm: 'Are you sure?  This will completely remove the Link request even though parts of it may already be approved.' } %>
+				<% end %>
+			<% end %>
+    </td>
+  </tr>

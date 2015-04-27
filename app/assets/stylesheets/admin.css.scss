@@ -1,0 +1,95 @@
+// Place all the styles related to the admin controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+
+
+.group_menu {
+	width: 300px;
+	margin: 20px;
+	float: left;
+	overflow: hidden;
+}
+
+.topbar {
+	border: 1px solid rgba(0,0,0,0.2);
+	box-shadow: inset 0px 0px 1px 1px rgba(255,255,255,0.5), 
+				inset 0px -3px 15px -1px rgba(0,0,0,0.2);
+	-webkit-border-top-left-radius: 5px;
+	-webkit-border-top-right-radius: 5px;
+	-moz-border-radius-topleft: 5px;
+	-moz-border-radius-topright: 5px;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	-webkit-background-clip: padding-box;
+}
+.topbar h1 {
+	background: url(http://noisepng.com/100-90-4-monochrome.png);
+	text-align: center;
+	margin: 0px 0px 0px 0px;
+	color: #fff;
+	font-size: 26px;
+	text-shadow: 1px 1px 0px rgba(0,0,0,0.3);
+	letter-spacing: -1px;
+}
+.inbar {
+	border: 1px solid rgba(0,0,0,0.2);
+	box-shadow: inset 0px 0px 10px -2px rgba(0,0,0,0.2);
+}
+.inbar ul {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+.inbar ul li { 
+	margin: 0;
+	padding: 0;
+	clear: both;
+	background: rgb(255,255,255);
+	background: -moz-linear-gradient(top,  rgba(255,255,255,1) 0%, rgba(247,247,247,1) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(100%,rgba(247,247,247,1)));
+	background: -webkit-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(247,247,247,1) 100%);
+	background: -o-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(247,247,247,1) 100%);
+	background: -ms-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(247,247,247,1) 100%);
+	background: linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(247,247,247,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f7f7f7',GradientType=0 );
+}
+.inbar ul li span {
+	float: left;
+	padding: 5px 20px 5px 20px;
+	border-right: 1px solid #eee;
+	border-bottom: 1px solid #eee;
+	font-weight: 800;
+	font-size: 30px;
+	color: #888;
+	background: #fff;
+}
+.inbar ul li p {
+	padding: 17px 0px 16px 70px;
+	border-right: 1px solid #eee;
+	border-bottom: 1px solid #eee;
+	margin: 0;
+	color: #666;
+	font-size: 16px;
+	text-shadow: 1px 1px 0 #fff;
+	box-shadow: inset 0 0 1px 1px #fff;
+}
+.inbar ul li:hover p {
+	background: rgba(0,0,0,0.02); 
+}
+.inbar ul li:hover span {
+	color: rgba(0,0,0,0.3);
+}
+/* Colors */
+
+.blue {
+	background: rgb(64,150,238);
+	background: -moz-linear-gradient(top,  rgba(64,150,238,1) 0%, rgba(35,112,188,1) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(64,150,238,1)), color-stop(100%,rgba(35,112,188,1)));
+	background: -webkit-linear-gradient(top,  rgba(64,150,238,1) 0%,rgba(35,112,188,1) 100%);
+	background: -o-linear-gradient(top,  rgba(64,150,238,1) 0%,rgba(35,112,188,1) 100%);
+	background: -ms-linear-gradient(top,  rgba(64,150,238,1) 0%,rgba(35,112,188,1) 100%);
+	background: linear-gradient(top,  rgba(64,150,238,1) 0%,rgba(35,112,188,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4096ee', endColorstr='#2370bc',GradientType=0 );
+}

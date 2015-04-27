@@ -1,0 +1,105 @@
+<h1>Subnet, IP, and VLAN Management</h1>
+<%= link_to 'Back', controller: :admin %>
+
+<p class="notice" id='notice' style='display:none; padding:10px'><%= notice %></p>
+
+<h2>Subnets</h2>
+
+<table border='0' class='tablesorter' cellspacing='1' cellpadding='0' width='100%' >
+  <thead>
+  <tr>
+      <th >CIDR</th>
+      <th >Owning Group</th>
+      <th >Action</th>
+    </tr>
+  </thead>
+
+  <tbody id='admin_list_tbody_id'>
+    <% @subnets.each do |oo| %>
+      <tr style="background-color:<%= cycle("#E6F2FF","white") %>">
+				<td><%= oo.ownable.cidr %> </td>
+				<td><div id='og_<%=oo.id%>'><div id='name_<%=oo.id%>' style='display:inline'><%= oo.owner_group.name %></div>
+									<button class='chg_ip_owner' data-id = '<%=oo.id%>'>Change</button>
+        <td><%= link_to 'Retire', admin_not_supported_path, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<div id='add_subnet' >
+<%= form_tag('/admin/add_subnet') do%>
+	
+		<input id="cidr" name='cidr' type="text" placeholder="New Subnet CIDR" >
+		<%= collection_select('new_group', '', OwnerGroup.all, :id, :name, {prompt: "Select owner group"}) %>
+		<button id='add_subnet_btn'>&nbsp;</button>
+
+<% end %>
+</div>
+<hr>
+<h2>IPs</h2>
+
+<table border='0' class='tablesorter' cellspacing='1' cellpadding='0' width='100%' >
+  <thead>
+  <tr>
+      <th >IP address</th>
+      <th >Owning Group</th>
+      <th >Action</th>
+    </tr>
+  </thead>
+
+  <tbody id='admin_list_tbody_id'>
+    <% @owner_objs.each do |oo| %>
+      <tr style="background-color:<%= cycle("#E6F2FF","white") %>">
+				<td><%= oo.ownable.addr %> </td>
+				<td><div id='og_<%=oo.id%>'><div id='name_<%=oo.id%>' style='display:inline'><%= oo.owner_group.name %></div>
+					<button class='chg_ip_owner' data-id = '<%=oo.id%>'>Change</button>
+        <td><%= link_to 'Retire', admin_not_supported_path, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div id='add_ip' >
+<%= form_tag('/admin/add_subnet') do%>
+	
+		<input id="ip" name='ip' type="text" placeholder="New IP" >
+		<%= collection_select('new_group', '', OwnerGroup.all, :id, :name, {prompt: "Select owner group"}) %>
+		<button id='add_ip_btn'>&nbsp;</button>
+
+<% end %>
+</div>
+</div>
+<hr>
+<h2>VLANs</h2>
+
+<table border='0' class='tablesorter' cellspacing='1' cellpadding='0' width='100%' >
+  <thead>
+  <tr>
+     <th >VLAN</th>
+     <th >Description</th>
+     <th >Owning Group</th>
+     <th >Action</th>
+  </tr>
+  </thead>
+
+  <tbody id='admin_list_tbody_id'>
+    <% @vlan_objs.each do |oo| %>
+      <tr style="background-color:<%= cycle("#E6F2FF","white") %>">
+		<td><%= oo.ownable.vlan_name %> </td>
+		<td><%= oo.ownable.description %> </td>
+		<td><div id='og_<%=oo.id%>'><div id='name_<%=oo.id%>' style='display:inline'><%= oo.owner_group.name %></div>
+			<button class='chg_ip_owner' data-id = '<%=oo.id%>'>Change</button>
+        <td><%= link_to 'Retire', admin_not_supported_path, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div id='add_vlan' >
+<%= form_tag('/admin/add_vlan') do%>
+		<input id="vlan_name" name='vlan_name' type="text" placeholder="New VLAN" >
+		<input id="description" name='description' type="text" placeholder="description" >	
+		<%= collection_select('new_group', '', OwnerGroup.all, :id, :name, {prompt: "Select owner group"}) %>
+		<button id='add_vlan_btn'>&nbsp;</button>
+
+<% end %>
+</div>

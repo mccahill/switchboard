@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  who: MyString
+  description: MyString
+  target: MyString
+  command: MyString
+  status: MyString
+  response: MyString
+
+two:
+  who: MyString
+  description: MyString
+  target: MyString
+  command: MyString
+  status: MyString
+  response: MyString

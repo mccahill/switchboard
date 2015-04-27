@@ -1,0 +1,29 @@
+<%= form_for(@switch) do |f| %>
+  <% if @switch.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@switch.errors.count, "error") %> prohibited this switch from being saved:</h2>
+
+      <ul>
+      <% @switch.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name, :size => 45 %>
+  </div>
+  <div class="field">
+    <%= f.label :description %>
+    <%= f.text_area :description, :cols => 50, :rows => 10 %>
+  </div>
+  <div class="field">
+    <%= f.label :hub %>
+    <%= f.check_box :hub %>
+  </div>
+  <div class="actions">
+    <%= f.submit :class=>'standard_button' %>
+  </div>
+<% end %>

@@ -1,0 +1,99 @@
+<h3>SDN network </h3>
+<%= link_to "View current network configuration",  home_visualize_sdn_path, :target => '_blank'%></li>
+
+<% unless @approvals.blank? or !@user.isAdmin? %>
+    <hr>
+	<h3>Pending Approvals</h3>
+	<% if @user.isAdmin? %>
+		<div>
+			<%= form_tag('/link_requests/sort') do %>
+				<%= check_box_tag 'show_admin_approval', !@adminApproval, @adminApproval, :onchange => "this.form.submit();"%>
+				Show all pending approvals - Admin Only
+				<%= hidden_field_tag 'show_admin', @show_admin%>
+				<%= hidden_field_tag 'just_mine', @justMine%>
+			<% end %>
+		</div>
+	<% end %>
+	
+	<table border='0' class='tablesorter' cellspacing='1' cellpadding='0' width='100%' >
+	  <thead>
+	  <tr>
+			<% @items.each_pair{|key,value|%>
+				<th class='no_sort_header'> <%= key %> </th>
+			<% } %>
+			<th class='action'>Action</th>
+	  </tr>
+	  </thead>
+	  <tbody id='admin_list_tbody_id'>
+		<%= render( :partial => "link_request", collection: @approvals, as: :req, locals: {for_approve: true}) %>
+	</table>
+	<hr>
+<% end %>
+
+<hr>
+<h3>Request SDN configuration change</h3>
+<div style='float:left;'>
+	<%= button_to "Request New Link", new_link_request_path, :class=>'standard_button', :method => :get %>
+</div><div style='float:left;'>
+	<%= form_tag('/link_requests/sort') do %>
+		<%= check_box_tag 'just_mine', !@justMine, @justMine, :onchange => "this.form.submit();"%>
+		Show Just My Requests		
+		<%= hidden_field_tag 'show_admin_approval', @adminApproval%>
+		<%= hidden_field_tag 'show_admin', @show_admin%>
+	<% end %>
+
+</div>
+
+<% if @user.isAdmin? %>
+	<div style='float:left'>
+		<%= form_tag('/link_requests/sort') do %>
+			<%= check_box_tag 'show_admin', !@show_admin, @show_admin, :onchange => "this.form.submit();"%>
+			Show requests for all users - Admin Only
+			<%= hidden_field_tag 'show_admin_approval', @adminApproval%>
+			<%= hidden_field_tag 'just_mine', @justMine%>
+		<% end %>
+	</div>
+<% end %>
+
+<div style="clear:both;"></div>
+
+<% if @reqs.blank? %>
+
+	<p>You don't have any Link requests.</p>
+
+<% else %>
+
+<table border='0' class='tablesorter' cellspacing='1' cellpadding='0' width='100%' >
+  <thead>
+  <tr>
+		<% @items.each_pair{|key,value|
+			if value == 'not_sortable'
+				%>
+				<th class='no_sort_header'><%= key%></th>
+				<%
+			else
+				klass = 'header '
+				if value == @curOrder
+					klass += @curDir ? 'headerSortDown' : 'headerSortUp'
+				end
+					%>
+	<th class='<%=klass%> <%=value%>'><%= link_to "#{key} &nbsp;".html_safe,  {:action=>:sort, :order=>value, :curOrder=>@curOrder,:curDir=>@curDir,:searchClause=>@searchClause,:just_mine=>@justMine,:show_admin=>@show_admin} %></th>
+					<%
+			end
+		} %>
+		<th class='action'>Action</th>
+  </tr>
+  </thead>
+  <tbody id='admin_list_tbody_id'>
+	<%= render( :partial => "link_request", collection: @reqs, as: :req, locals: {for_approve: false}) %>
+</table>
+
+<div class="apple_pagination">
+	<div class="page_info">
+		<%= page_entries_info @reqs %>
+	</div>
+	<%= will_paginate @reqs,  :params=>{:just_mine=>@justMine,:show_admin=>@show_admin}, :container => false %>
+</div>
+<% end %>
+
+

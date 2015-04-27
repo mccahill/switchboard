@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  src_approval_id: 1
+  dest_approval_id: 1
+  comment: MyText
+  start: 2014-04-16
+  end: 2014-04-16
+  traffic: 1
+
+two:
+  user_id: 1
+  src_approval_id: 1
+  dest_approval_id: 1
+  comment: MyText
+  start: 2014-04-16
+  end: 2014-04-16
+  traffic: 1

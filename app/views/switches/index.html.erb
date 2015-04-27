@@ -1,0 +1,44 @@
+<h1>Switches</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Hub</th>
+      <th colspan="6"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @switches.each do |switch| %>
+      <tr ">
+        <td style='padding:5px 10px 5px 5px'><%= switch.name %></td>
+        <td style='padding:5px 10px 5px 5px'><%= switch.description %></td>
+        <td style='padding:5px 10px 5px 5px'><%= switch.hub %></td>
+        <td style='padding:5px 10px 5px 5px'></td>
+        <td style='padding:5px 10px 0px 0px'><%= link_to 'Show', switch %></td>
+        <td style='padding:5px 10px 0px 0px'><%= link_to 'Edit', edit_switch_path(switch) %></td>
+        <td style='padding:5px 10px 0px 0px'><%= link_to 'Destroy', switch, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <tr>
+        <td></td>
+        <td>
+           <table>
+               <% switch.switch_configs.each do |config| %>
+               <tr style="background-color:<%= cycle("#E6F2FF","white") %>">
+               <td style='padding:0px 10px 0px 10px'> <%= config.ip %> </td>
+               <td style='padding:0px 10px 0px 10px'> <%= config.network_type %> </td>
+               <td style='padding:0px 10px 0px 10px'> <% if !config.vlan.nil? && !config.vlan.blank? %> vlan <%= config.vlan %>  <% end %> 
+               </td>
+               </tr>
+               <% end %>
+           </table>
+        </td>
+        </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Add Switch', new_switch_path %> | <%= link_to 'Add Configuration', new_switch_initial_config_path %> | <%= link_to 'Edit Configurations', switch_initial_configs_path %> | <%= link_to 'Back', admin_path %> 

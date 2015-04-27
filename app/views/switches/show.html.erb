@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @switch.name %>
+<br>
+  <strong>Description:</strong>
+  <%= @switch.description %>
+<br>
+  <strong>Hub:</strong>
+  <%= @switch.hub %>
+<br>
+  <strong>Initial configuration:</strong>
+<table>
+    <% @switch.switch_configs.each do |config| %>
+    <tr style="background-color:<%= cycle("#E6F2FF","white") %>">
+    <td style='padding:0px 10px 0px 10px'> <%= config.ip %> </td>
+    <td style='padding:0px 10px 0px 10px'> <%= config.network_type %> </td>
+    <td style='padding:0px 10px 0px 10px'> <% if !config.vlan.nil? %> vlan <%= config.vlan %>  <% end %> 
+    </td>
+    </tr>
+    <% end %>
+</table>
+
+</p>
+
+<%= link_to 'Edit', edit_switch_path(@switch) %> |
+<%= link_to 'Configurations', switch_initial_configs_path %> | <%= link_to 'Back', switches_path %>

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  netid: MyString
+  duid: MyString
+  displayName: MyString
+  phone: MyString
+  email: MyString
+
+two:
+  netid: MyString
+  duid: MyString
+  displayName: MyString
+  phone: MyString
+  email: MyString

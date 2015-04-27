@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>switch description:</strong>
+  <%= @switch_initial_config.switch_description %>
+<br>
+  <strong>switch id:</strong>
+  <%= @switch_initial_config.switch_name %>
+<br>
+  <strong>ip:</strong>
+  <%= @switch_initial_config.ip %>
+<% if !@switch_initial_config.vlan.nil? %>
+  <br>
+    <strong>vlan:</strong>
+    <%= @switch_initial_config.vlan %>
+<% end %>
+<br>
+  <strong>network type:</strong>
+  <%= @switch_initial_config.network_type %>
+
+</p>
+
+<%= link_to 'Edit', edit_switch_initial_config_path(@switch_initial_config) %> |
+<%= link_to 'Switches', switches_path %> | <%= link_to 'Back', switch_initial_configs_path %>

@@ -1,0 +1,67 @@
+<%= render 'menu_options'%>
+
+<div id='search' style='float:right; margin-top:13px'>
+<script type="text/javascript">
+function doSearch() {
+	var s = document.getElementById('searchClause');
+	location = "/activities/sort?curDir=<%=@curDir%>&curOrder=<%=@curOrder%>&order=<%=@curOrder%>&page=1&searchClause="+s.value;
+	return false;
+}
+</script>
+		<%= submit_tag 'Search', :onClick=>'return doSearch();', :class=>'standard_button'%>
+		<%= text_field_tag "searchClause", @searchClause, :size=>40, :onKeydown=>'if (event.keyCode==13) doSearch();' %>
+</div>
+
+<table class='act_table' border='2' cellspacing='5' cellpadding='5' width='100%'>
+	
+  <thead>
+  <tr>
+		<% @items.each_pair{|key,value|
+			klass = 'header '
+			if value.blank?
+				%>
+				<th class='no_sort'><%= key %></th>
+				<%
+			else	
+				if value == @curOrder
+					klass += @curDir ? 'headerSortDown' : 'headerSortUp'
+				end
+		%>
+			<th class='<%=klass%> <%=value%>'><%= link_to "#{key} &nbsp;".html_safe,  {:action=>:sort, :order=>value, :curOrder=>@curOrder,:curDir=>@curDir,:searchClause=>@searchClause} %></th>
+		<% end
+	   } %>
+  </tr>
+  </thead>
+	
+	<tbody id='admin_list_tbody_id'>
+
+		<% 	@acts.each do |act| %>
+	<tr style="background-color:<%= cycle("#E6F2FF","white") %>">
+    <td><%=act.user.displayName unless act.user.blank?%> </td>
+    <td><%=act.verb%> </td>
+		<td><%=act.ip.short_fqdn unless act.ip.blank?%></td>
+    <td>
+			<ul>
+				<% act.link_request.approvals.each do |app| %>
+				<li>
+					<%= app.ip.short_fqdn %>
+					<% if !app.ip.vlan.blank? %>
+					    with VLAN: <%= app.ip.vlan.display %>
+					<% end %>
+				</li>
+				<% end %> 
+			</ul>
+		</td>
+		<td><%=act.occurred.strftime("%Y-%m-%d %H:%M")   %></td>
+		
+  </tr>
+<% end %>
+	</tbody>
+</table>
+
+<div class="apple_pagination">
+	<div class="page_info">
+		<%= page_entries_info @acts %>
+	</div>
+	<%= will_paginate @acts %>
+</div>

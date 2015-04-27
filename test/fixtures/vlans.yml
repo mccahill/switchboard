@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  vlan_name: MyString
+  description: MyText
+
+two:
+  vlan_name: MyString
+  description: MyText

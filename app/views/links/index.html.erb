@@ -1,0 +1,26 @@
+<h1>Valid SDN Links</h1>
+<%= link_to 'Back', controller: :admin %>
+
+<table border='0' class='tablesorter' cellspacing='1' cellpadding='0' width='100%' >
+  <thead>
+  <tr>
+      <th >Link</th>
+      <th >Type of Traffic</th>
+      <th >Action</th>
+    </tr>
+  </thead>
+
+  <tbody id='admin_list_tbody_id'>
+    <% @links.each do |link| %>
+      <tr style="background-color:<%= cycle("#E6F2FF","white") %>">
+				<td>
+					<%= link.approvals.collect{|a|a.ip.display}.join(" to ") %>
+				</td>
+				<td><%= link.traffic %></td>
+        <td><%= link_to 'Show', link %> | 
+        <%= link_to 'Destroy', link, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

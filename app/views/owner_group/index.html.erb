@@ -1,0 +1,52 @@
+<h1>Groups</h1>
+<%= link_to 'Back', controller: :admin %>
+
+<div id='search' style='float:right; margin-top:13px'>
+<script type="text/javascript">
+function doSearch() {
+	var s = document.getElementById('searchClause');
+	location = "/owner_group/sort?curDir=<%=@curDir%>&curOrder=<%=@curOrder%>&page=1&searchClause="+s.value;
+	return false;
+}
+</script>
+		<%= submit_tag 'Search', :onClick=>'return doSearch();', :class=>'standard_button'%>
+		<%= text_field_tag "searchClause", @searchClause, :size=>40, :onKeydown=>'if (event.keyCode==13) doSearch();' %>
+</div>
+
+<% if @groups.blank? %>
+
+	<p>No Groups match that criteria</p>
+
+<% else %>
+
+<table border='0' class='tablesorter' cellspacing='1' cellpadding='0' width='100%' >
+  <thead>
+  <tr>
+		<% @items.each_pair{|key,value|
+			if value == 'not_sortable'
+				%>
+				<th class='no_sort_header'><%= key%></th>
+				<%
+			else
+				klass = 'header '
+				if value == @curOrder
+					klass += @curDir ? 'headerSortDown' : 'headerSortUp'
+				end
+					%>
+	<th class='<%=klass%> <%=value%>'><%= link_to "#{key} &nbsp;".html_safe,  {:action=>:sort, :order=>value, :curOrder=>@curOrder,:curDir=>@curDir,:searchClause=>@searchClause,:just_mine=>@justMine,:show_admin=>@show_admin} %></th>
+					<%
+			end
+		} %>
+  </tr>
+  </thead>
+  <tbody id='admin_list_tbody_id'>
+	<%= render( :partial => "group", collection: @groups, as: :group) %>
+</table>
+
+<div class="apple_pagination">
+	<div class="page_info">
+		<%= page_entries_info @groups %>
+	</div>
+	<%= will_paginate @groups,  :params=>{:just_mine=>@justMine,:show_admin=>@show_admin}, :container => false %>
+</div>
+<% end %>
