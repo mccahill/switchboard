@@ -1,31 +1,37 @@
-== Setup a RYU, mininet, and Open vSwitch
+== Setup a RYU, mininet, and Open vSwitch environment
 
 To simulate an SDN network, I previously ran the SDNHub virtual appliance,
 (found here: http://sdnhub.org/tutorials/sdn-tutorial-vm/) and configured a 
 simulated SDN network using mininet. 
 
-However, after I managed to mess up the SDNHub appliance several times, 
-I decided to build a minimal VM to run the things I care about. Here is
-how to build that environment:
+== Build a custom VM to simulate and SDN network
+
+After I managed to mess up the SDNHub appliance several times, 
+I decided to build a minimal VM to run the things I care about. 
+Here is how to build that environment:
 
 1.) update your Ubuntu 14.04 VM
 
   % sudo apt-get update
   % sudo apt-get upgrade
 
+
 2.) install openvswitch
 
   % sudo apt-get install openvswitch-switch
 
+
 3.) install mininet
 
   % sudo apt-get install mininet
+
 
 4.) get the python utils you will need to install ryu
 
   % sudo apt-get install python-pbr  python-py python-six python-oslo.config \
      python-eventlet python-lxml python-netaddr       python-paramiko    \
      python-routes   python-webob python-sphinx       python-pip
+
 
 5.) install ryu from source
 
@@ -35,8 +41,7 @@ how to build that environment:
   % sudo python ./setup.py install
 
 
-
-Notes:
+== Install Ryu REST router and Mininet
 
 0.) After you get the VM running, install a clean copy of ryu from source:
 
@@ -50,6 +55,7 @@ After you have a clean ryu install, you can run ryu apps like this:
 
 but... ryu without an SDN network is not very interesting, so the next step is to
 get mininet configured to create a simulated SDN network
+
 
 1.) Run Mininet with a custom config that roughly corresponds to our setup. 
 Place the topo-3sw-6hosts.py from the switchboard/sdn directory of this fine Ruby-On-Rails app
@@ -108,6 +114,7 @@ issue these commands:
   h5 ip addr add 172.16.8.2/26 dev h5-eth0
   h6 ip addr add 172.16.8.3/26 dev h6-eth0
 
+
 4.) Now you can run the RYU rest router:
 
   ryu-manager --verbose ryu.app.rest_router
@@ -133,7 +140,6 @@ nothing is configured yet, but ryu is working
   mininet> h4 ip route add default via 172.16.8.75
   mininet> h5 ip route add default via 172.16.8.15
   mininet> h6 ip route add default via 172.16.8.15
-
 
 
 6.) Now we can configure the SDN switches. First, add routes for the host networks. 
@@ -182,7 +188,7 @@ put topo-3sw-6hosts.py and run mininet something like this:
 https://osrg.github.io/ryu-book/en/html/rest_router.html
 
 
-10.) BUT WAIT -- There's More! 
+10.) Including VLAN tagged networks
 
 Suppose you want to simulate a scenario with a mixture of un-tagged traffic and vlan-tagged
 addresses/routes. To test this scenario, there is a set of config and start scripts in the SDN
@@ -203,7 +209,7 @@ are tagged as being on vlan 2.
 The un-tagged hosts and routes are h2, h4 and h6 (connected to sw1, sw2, and sw3 respectively).
 The hosts living on VLAN 2 are h1, h3, and h5 (connected to sw1, sw2, and sw3 respectively).
  
-Note that some fancy footwork is required to add a networ dev and address in mininet for the vlan;
+Note that some fancy footwork is required to add a network dev and address in mininet for the vlan;
 that is what is going on here in the config-ip file:
 
   h1 ip link add link h1-eth0 name h1-eth0.2 type vlan id 2
